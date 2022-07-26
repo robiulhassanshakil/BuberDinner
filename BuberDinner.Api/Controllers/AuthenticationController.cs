@@ -18,15 +18,17 @@ public class AuthenticationController : Controller
     [HttpPost("register")]
     public IActionResult Register(RegisterRequest request)
     {
-        var result = _authenticationService.Register(request.FirstName,
+        var result = _authenticationService.Register(
+            request.FirstName,
             request.LastName,
             request.Email,
             request.Password);
 
-        var response = new AuthenticationResult(result.Id, 
-            result.FirstName, 
-            result.LastName,
-            result.Email, 
+        var response = new AuthenticationResponse(
+            result.User.Id, 
+            result.User.FirstName, 
+            result.User.LastName,
+            result.User.Email, 
             result.Token);
 
         return Ok(response);
@@ -36,10 +38,12 @@ public class AuthenticationController : Controller
     public IActionResult Login(LoginRequest request)
     {
         var result = _authenticationService.Login(request.Email, request.Password);
-        var response = new AuthenticationResult(result.Id,
-            result.FirstName,
-            result.LastName,
-            result.Email,
+
+        var response = new AuthenticationResponse(
+            result.User.Id,
+            result.User.FirstName,
+            result.User.LastName,
+            result.User.Email,
             result.Token);
 
         return Ok(response);
