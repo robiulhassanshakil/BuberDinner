@@ -16,13 +16,13 @@ public class AuthenticationService : IAuthenticationService
     public AuthenticationResult Register(string firstName, string lastName, string email, string password)
     {
         //1.Validate user doesn't exists
-        if(_userRepository.GetUserByEmail(email) is not null)
+        if (_userRepository.GetUserByEmail(email) is not null)
         {
             throw new Exception("User with the given email already exsist.");
         }
 
         //2.Create user (generate unique ID) & persist DB
-        var user = new User 
+        var user = new User
         {
             FirstName = firstName,
             LastName = lastName,
@@ -43,13 +43,13 @@ public class AuthenticationService : IAuthenticationService
     public AuthenticationResult Login(string email, string password)
     {
         //1.Validate the user exists
-        if(_userRepository.GetUserByEmail(email) is not User user)
+        if (_userRepository.GetUserByEmail(email) is not User user)
         {
             throw new Exception("Invalid user and password.");
         }
 
         //2. Validate the password i correct
-        if(user.Password != password)
+        if (user.Password != password)
         {
             throw new Exception("Invalid user and password.");
         }
