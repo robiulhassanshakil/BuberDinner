@@ -6,8 +6,6 @@ using Microsoft.Extensions.Options;
 
 namespace BuberDinner.Api.Common.Errors;
 
-
-
 public class BubberDinnerProblemDetailsFactory : ProblemDetailsFactory
 {
     private readonly ApiBehaviorOptions _options;
